@@ -1,0 +1,73 @@
+label {
+    color: #001;
+}
+
+/* CSS IDs */
+#column-with-budget-buttons > button {
+    margin-left: 0.4rem;
+}
+#navbar {
+    border-radius: 4px;
+    z-index: 100;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+#transaction-table {
+    font-size: 0.9rem;
+}
+#login-form-div, #credentials-alert {
+    width: 50%;
+    min-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+#login-form-div > h2 {
+    text-align: center;
+}
+#username-input {
+    width: 100%;
+}
+#password-input {
+    width: 100%;
+}
+#username-greeting {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+/* CSS Classes */
+.floatRight {
+    position: relative;
+    float: right;
+}
+.hiddenDiv {
+    display: none;
+}
+
+/* Below are Dash Component Class Names */
+.DateRangePickerInput {
+    border: 2px solid #588F6A;
+    transition: 0.2s;
+}
+.DateRangePickerInput:hover {
+    border: 2px solid #56CC9D;
+}
+.DateInput_input {
+    cursor: pointer;
+    transition: 0.2s;
+}
+.DateInput_input:hover {
+    color: #56CC9D;
+}
+
+.collapse-style {
+    border: 1px solid #223;
+    position: absolute;
+    z-index: 80;
+    background-color: #fafafa;
+    height: 200px;
+    width: 100%;
+    border-radius: 4px;
+}
