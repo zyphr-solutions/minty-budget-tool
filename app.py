@@ -30,6 +30,7 @@ app = dash.Dash(
     external_stylesheets=[dbc.themes.MINTY],
     suppress_callback_exceptions=True
 )
+server = app.server
 
 @app.server.route("/login", methods=["POST"])
 def route_login():
