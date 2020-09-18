@@ -44,12 +44,6 @@ def layout(df, transaction_category_array,
     ], no_gutters=True, style=MARGIN_BELOW_USER_SELECTION_ROW),
     dbc.Row([
         dbc.Col([
-            dbc.Button(
-                "Modify Chart",
-                id="collapse-button",
-                className="mb-3",
-                color="primary",
-            ),
             dbc.Collapse(
                 html.Div("this is a div of sorts", className="happy-div"),
                 id="collapse",
@@ -57,16 +51,15 @@ def layout(df, transaction_category_array,
             ),
             dcc.Graph(
                 id="budget-bar-chart", config=CONFIG,
-                style={"height": "30vh"}
             ),
-        ]),  
+        ], width=8, md=12, lg=8),
         dbc.Col(
             dbc.Card(
                 dbc.CardBody(
                     html.Span(html.Span(id="budget-card-text")),
                 ),
                 id="card-for-budget-chart"
-            ), width=4
+            ), width=4, md=12, lg=4
         ),
     ], no_gutters=True, style=MARGIN_BELOW_CHARTS_ROW),
     dbc.Modal([
@@ -129,14 +122,13 @@ def layout(df, transaction_category_array,
         dbc.Col(
             dcc.Graph(
                 id="insights-bar-chart",
-                style={"height": "40vh"},
                 config=CONFIG
             ),
-            width=3
+            width=3, md=6
         ),
         dbc.Col(
-            dcc.Graph(id="pie-chart", config=CONFIG, style={"height": "40vh"}),
-            width=5,
+            dcc.Graph(id="pie-chart", config=CONFIG,),
+            width=5, md=6
         ),
         dbc.Col(
             dbc.Card(
@@ -144,7 +136,7 @@ def layout(df, transaction_category_array,
                     html.H3("Spending by Category"),
                     html.Span(html.Span(id="insights-card-text")),
                 ]),
-            ), width=4
+            ), width=4, md=12,
         ),
     ], no_gutters=True, style=MARGIN_BELOW_CHARTS_ROW),
     html.H1("Transactions"),
@@ -160,19 +152,19 @@ def layout(df, transaction_category_array,
                     id="checklist-inline-input",
                     inline=True,
                 ),
-            ]
+            ],
         ),
     ], no_gutters=True),
     dbc.Row([
         dbc.Col(
             dcc.Graph(
                 id="transactions-line-chart", config=CONFIG,
-                style={"height": "60vh"},
-            )
+            ),
+            width=8, md=12,
         ),
         dbc.Col(
             table,
-            width=4
+            width=4, md=12,
         ),
     ], no_gutters=True)
 ])])])

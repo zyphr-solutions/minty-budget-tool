@@ -330,7 +330,8 @@ def pie_chart_and_insights_card(dataframe, start_date, end_date,
         ],
         layout=dict(
             showlegend=False,
-            margin=dict(b=10, t=10, l=10, r=10),
+            # margin=dict(b=10, t=10, l=10, r=10),
+            margin=dict(b=0, t=0, l=0, r=0),
             piecolorway=[GREEN_COLOR],
         )
     )
