@@ -33,13 +33,23 @@ label {
     font-size: 0.9rem;
 }
 #login-form-div, #credentials-alert {
-    width: 50%;
+    width: 95%;
     min-width: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     animation: fadeIn 0.7s forwards 0.1s;
     opacity: 0;
+}
+
+@media all and (min-width: 700px) {
+    #login-form-div {
+        width: 50%;
+    }
+
+    #credentials-alert {
+        width: 50%;
+    }
 }
 
 #top-nav {
