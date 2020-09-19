@@ -419,7 +419,9 @@ def serve_layout():
 
     # landing login page
     if session_cookie not in user_names.keys():
-        topnav = html.H2("Log In", style={"textAlign": "center"})
+        topnav = html.H1(
+            "Log In", style={"textAlign": "center"},
+            className="login-title")
         return html.Div([
             html.Div(topnav, id="top-nav"),
             html.Div(login_form, id="app-content"),

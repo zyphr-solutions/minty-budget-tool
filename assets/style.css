@@ -40,21 +40,16 @@ label {
     margin-top: 10px;
     animation: fadeIn 0.7s forwards 0.1s;
     opacity: 0;
-}
-
-@media all and (min-width: 700px) {
-    #login-form-div {
-        width: 50%;
-    }
-
-    #credentials-alert {
-        width: 50%;
-    }
+    font-size: 1.6em;
 }
 
 #top-nav {
     opacity: 0;
     animation: fadeIn 0.4s forwards;
+}
+
+.login-title {
+    font-size: 4rem;
 }
 
 @keyframes fadeIn {
