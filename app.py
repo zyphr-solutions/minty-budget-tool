@@ -384,19 +384,16 @@ def pie_chart_and_insights_card(dataframe, start_date, end_date,
 
 def table_from_dataframe(df):
     table_headers = ["Date", "Category", "Amount", "Balance"]
-    my_table = html.Div(dash_table.DataTable(
+    my_table = dash_table.DataTable(
         id="transaction-table",
         columns=[{"name": i, "id": i} for i in table_headers],
         data=df[table_headers].to_dict("records"),
-        page_size=20,
-        # style_as_list_view=True,
+        page_size=10,
+        style_as_list_view=True,
         style_table={
-            "overflowY": "auto",
-            "width": "100%",
-            # "height": "60vh",
         },
         style_cell={
-            'whiteSpace': 'normal',
+            # 'whiteSpace': 'normal',
             'height': 'auto',
             "color": "#111",
             "textAlign": "left",
@@ -407,17 +404,12 @@ def table_from_dataframe(df):
                 "backgroundColor": "#eef",
             }
         ],
-        style_cell_conditional=[
-            {
-                "if": {"column_id": "Category"},
-                "width": "10px"
-            },
-        ],
+        style_cell_conditional=[],
         style_header={
             "backgroundColor": GREEN_COLOR,
             "color": PLOT_BGCOLOR
         }
-    ), className="table-div-container")
+    )
     return my_table
 
 def serve_layout():
@@ -476,11 +468,15 @@ def serve_layout():
         )
 
         topnav = dbc.Navbar([
-            dbc.NavbarBrand(NAVBAR_TITLE, className="ml-2",
-                            style=TITLE_STYLE),
-            dbc.NavbarBrand(NAVBAR_SUBTITLE,
-                            className="ml-2 subtitle_style"),
-            greeting_and_logout_button
+            dbc.NavbarBrand(
+                NAVBAR_TITLE, className="ml-2",
+                style=TITLE_STYLE
+            ),
+            dbc.NavbarBrand(
+                NAVBAR_SUBTITLE,
+                className="ml-2 subtitle_style"
+            ),
+            greeting_and_logout_button,
         ],
             color="light",
             light=True,

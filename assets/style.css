@@ -1,5 +1,6 @@
 body {
     margin: 2rem;
+    font-size: 20px;
     line-height: 1.5;
     font-weight: 400;
 }
@@ -17,8 +18,8 @@ h1 {
 h3 {
     font-size: 1.75rem;
     font-weight: 600;
-}*/
-
+}
+*/
 label {
     color: #001;
 }
@@ -142,18 +143,16 @@ label {
     max-height: 400px;
 }
 
-@media all and (max-height: 768px) {
+/*@media all and (max-height: 768px) {
     .table-div-container {
-        height: 40vh;
-        overflow-y: scroll;
+        height: 20vh;
     }
 }
 @media all and (max-height: 769px) {
     .table-div-container {
-        height: 40vh;
-        overflow-y: scroll;
+        height: 20vh;
     }
-}
+}*/
 
 #transactions-line-chart {
     height: 60vh;

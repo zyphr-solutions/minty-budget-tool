@@ -111,33 +111,38 @@ def layout(df, transaction_category_array,
     dbc.CardBody([
 
     html.H1("Insights"),
-    html.P(
-        (
-            "This section breaks down your spending by category. "
-            "Use the datepicker to select date range."
-        )
-    ),
-    # datepicker
-    dcc.DatePickerRange(
-        id="date-picker-for-pie",
-        min_date_allowed=min(df["Date"]),
-        max_date_allowed=max(df["Date"]),
-        start_date=date(2020, 1, 1),
-        end_date=dt.now(),
-        display_format="YYYY MMM DD",
-        style=MARGIN_BELOW_CHARTS_ROW,
-    ),
     dbc.Row([
         dbc.Col(
-            dcc.Graph(id="pie-chart", config=CONFIG),
-            xs=6, md=4, lg=3,
+            html.P(
+                (
+                    "This section breaks down your spending by category. "
+                    "Use the datepicker to select date range."
+                )
+            ), md=12, lg=8
         ),
+        dbc.Col(
+            dcc.DatePickerRange(
+                id="date-picker-for-pie",
+                min_date_allowed=min(df["Date"]),
+                max_date_allowed=max(df["Date"]),
+                start_date=date(2020, 1, 1),
+                end_date=dt.now(),
+                display_format="YYYY MMM DD",
+                style=MARGIN_BELOW_CHARTS_ROW,
+            ), md=12, lg=4
+        ),
+    ], no_gutters=False),
+    dbc.Row([
         dbc.Col(
             dcc.Graph(
                 id="insights-bar-chart",
                 config=CONFIG
             ),
             xs=6, md=8, lg=5,
+        ),
+        dbc.Col(
+            dcc.Graph(id="pie-chart", config=CONFIG),
+            xs=6, md=4, lg=3,
         ),
         dbc.Col(
             dbc.Card(
@@ -176,13 +181,12 @@ def layout(df, transaction_category_array,
             dcc.Graph(
                 id="transactions-line-chart", config=CONFIG,
             ),
-            width=8, md=12, lg=8
+            width=12,
         ),
         dbc.Col(
             table,
-            width=4, md=12, lg=4
+            width=12,
         ),
-    ], no_gutters=False)
-])], className="a-card")
-
+    ], no_gutters=False),
+])], className="a-card"),
 ])
