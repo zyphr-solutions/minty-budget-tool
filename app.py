@@ -185,7 +185,7 @@ def transactions_line_chart(dataframe, start_date, end_date, checklistInput):
             ),
         ),
         go.Scatter(
-            name="spending in interval",
+            name="spending",
             x=df_filtered["Date"],
             y=df_filtered["Balance"],
             marker=dict(color=GREEN_COLOR),
@@ -330,7 +330,6 @@ def pie_chart_and_insights_card(dataframe, start_date, end_date,
         ],
         layout=dict(
             showlegend=False,
-            # margin=dict(b=10, t=10, l=10, r=10),
             margin=dict(b=0, t=0, l=0, r=0),
             piecolorway=[GREEN_COLOR],
         )
@@ -357,27 +356,27 @@ def pie_chart_and_insights_card(dataframe, start_date, end_date,
     text_for_card = [
         html.P(
             f"Between {compact_start_date} and {compact_end_date}",
-            style=SUBTITLE_STYLE
+            className="subtitle_style",
         ),
         html.P(
             [html.Span("Total Spendings:"),
              html.Span(total_spendings_label,
-                       style=FLOAT_RIGHT_STYLE)],
+                       className="floatRightStyle")],
         ),
         html.P(
             [html.Span("Total Income for Period:"),
              html.Span(total_income_for_period,
-                       style=FLOAT_RIGHT_STYLE)],
+                       className="floatRightStyle")],
         ),
         html.P(
             [html.Span("Most Spent Category:"),
              html.Span(most_spent_category,
-                       style=FLOAT_RIGHT_STYLE)],
+                       className="floatRightStyle")],
         ),
         html.P(
             [html.Span("Least Spent Category:"),
              html.Span(least_spent_category,
-                       style=FLOAT_RIGHT_STYLE)],
+                       className="floatRightStyle")],
         ),
     ]
 
@@ -385,21 +384,22 @@ def pie_chart_and_insights_card(dataframe, start_date, end_date,
 
 def table_from_dataframe(df):
     table_headers = ["Date", "Category", "Amount", "Balance"]
-    my_table = dash_table.DataTable(
+    my_table = html.Div(dash_table.DataTable(
         id="transaction-table",
         columns=[{"name": i, "id": i} for i in table_headers],
         data=df[table_headers].to_dict("records"),
         page_size=20,
-        style_as_list_view=True,
+        # style_as_list_view=True,
         style_table={
             "overflowY": "auto",
             "width": "100%",
-            "height": "60vh",
+            # "height": "60vh",
         },
         style_cell={
             'whiteSpace': 'normal',
             'height': 'auto',
-            "color": "#111"
+            "color": "#111",
+            "textAlign": "left",
         },
         style_data_conditional=[
             {
@@ -407,11 +407,17 @@ def table_from_dataframe(df):
                 "backgroundColor": "#eef",
             }
         ],
+        style_cell_conditional=[
+            {
+                "if": {"column_id": "Category"},
+                "width": "10px"
+            },
+        ],
         style_header={
             "backgroundColor": GREEN_COLOR,
             "color": PLOT_BGCOLOR
         }
-    )
+    ), className="table-div-container")
     return my_table
 
 def serve_layout():
@@ -470,9 +476,10 @@ def serve_layout():
         )
 
         topnav = dbc.Navbar([
-            dbc.NavbarBrand(NAVBAR_TITLE, className="ml-2"),
-            dbc.NavbarBrand(NAVBAR_SUBTITLE, className="ml-2",
-                            style=SUBTITLE_STYLE),
+            dbc.NavbarBrand(NAVBAR_TITLE, className="ml-2",
+                            style=TITLE_STYLE),
+            dbc.NavbarBrand(NAVBAR_SUBTITLE,
+                            className="ml-2 subtitle_style"),
             greeting_and_logout_button
         ],
             color="light",
@@ -629,17 +636,17 @@ def update_budget_card_contents(n1, n2, yearMonth, jsonified_data,
         html.H3(f"Budget Metrics"),
         html.P(
             f"For {month_abbr}, {year}",
-            style=SUBTITLE_STYLE
+            className="subtitle_style",
         ),
         html.P(
             [html.Span("Budget Total:"),
              html.Span("$" + str(budget_total),
-                       style=FLOAT_RIGHT_STYLE)],
+                       className="floatRightStyle")],
         ),
         html.P(
             [html.Span("Funds Spent:"),
              html.Span("$" + str(funds_spent),
-                       style=FLOAT_RIGHT_STYLE)],
+                       className="floatRightStyle")],
         ),
         html.P([html.Span("Remaining: "),
             html.Span(

@@ -10,8 +10,9 @@ from util.constants import *
 
 def layout(df, transaction_category_array,
            category_budget_hash, table):
-    return dbc.Card([dbc.CardBody([html.Div([
-
+    return html.Div([
+        dbc.Card([
+        dbc.CardBody([
     html.H1("Budgets"),
     html.P("Manage your personal budgets to manage your money effectively."),
     dbc.Row([
@@ -25,30 +26,32 @@ def layout(df, transaction_category_array,
                 ],
                 value="2020-08",
             ),
-            width=8,
+            className="col-md-12 col-lg-8"
         ),
-        dbc.Col([
-            dbc.Button("Update Budget", color="info",
-                       id="open-add-budget-modal",),
-            dbc.Button("Remove Budget", color="danger",
-                       id="open-remove-budget-modal"),
-        ],
-        id="column-with-budget-buttons",
-        width=4,
+        dbc.Col(
+            dbc.Button(
+                "Update Budget",
+                id="open-add-budget-modal",
+                color="info",
+            ),
+            className="col-md-6 col-lg-2"
         ),
-        dbc.Tooltip("add a new budget or update an existing one",
+        dbc.Col(
+            dbc.Button(
+                "Remove Budget",
+                id="open-remove-budget-modal",
+                color="danger",
+            ),
+            className="col-md-6 col-lg-2"
+        ),
+        dbc.Tooltip("Add a new budget or update an existing one",
                     target="open-add-budget-modal"),
-        dbc.Tooltip("remove an existing budget",
+        dbc.Tooltip("Remove an existing budget",
                     target="open-remove-budget-modal"),
 
-    ], no_gutters=True, style=MARGIN_BELOW_USER_SELECTION_ROW),
+    ], no_gutters=False, style=MARGIN_BELOW_CHARTS_ROW),
     dbc.Row([
         dbc.Col([
-            dbc.Collapse(
-                html.Div("this is a div of sorts", className="happy-div"),
-                id="collapse",
-                className="collapse-style"
-            ),
             dcc.Graph(
                 id="budget-bar-chart", config=CONFIG,
             ),
@@ -61,7 +64,7 @@ def layout(df, transaction_category_array,
                 id="card-for-budget-chart"
             ), width=4, md=12, lg=4
         ),
-    ], no_gutters=True, style=MARGIN_BELOW_CHARTS_ROW),
+    ], no_gutters=False, style=MARGIN_BELOW_CHARTS_ROW),
     dbc.Modal([
         dbc.ModalHeader("Add a new budget"),
         dbc.ModalBody([
@@ -76,13 +79,14 @@ def layout(df, transaction_category_array,
             dbc.Label("Amount per Month ($)"),
             dbc.Input(type="number", id="modal-amount-for-budget"),
         ]),
-        dbc.ModalFooter([
-            dbc.Button("Close", color="danger",
-                       id="close-add-budget-modal",className="ml-auto"),
-            dbc.Button("Save", color="success",
-                       id="save-budget-modal", className="ml-auto"),
+        dbc.ModalFooter(html.Div([
+            dbc.Button("Save", color="success", id="save-budget-modal",
+                       className="ml-auto margin-right"),
+            dbc.Button("Close", color="danger", id="close-add-budget-modal",
+                       className="ml-auto"),
         ])
-    ], id="modal-backdrop"),
+        )
+    ], className="", id="modal-backdrop"),
     dbc.Modal([
         dbc.ModalHeader("Remove Budget"),
         dbc.ModalBody([
@@ -101,6 +105,11 @@ def layout(df, transaction_category_array,
                        id="save-remove-budget-modal", className="ml-auto"),
         ])
     ], id="modal-remove-budget-backdrop"),
+
+    ])], className="a-card"),
+    dbc.Card([
+    dbc.CardBody([
+
     html.H1("Insights"),
     html.P(
         (
@@ -116,19 +125,19 @@ def layout(df, transaction_category_array,
         start_date=date(2020, 1, 1),
         end_date=dt.now(),
         display_format="YYYY MMM DD",
-        style=MARGIN_BELOW_USER_SELECTION_ROW,
+        style=MARGIN_BELOW_CHARTS_ROW,
     ),
     dbc.Row([
+        dbc.Col(
+            dcc.Graph(id="pie-chart", config=CONFIG),
+            xs=6, md=4, lg=3,
+        ),
         dbc.Col(
             dcc.Graph(
                 id="insights-bar-chart",
                 config=CONFIG
             ),
-            width=3, md=6
-        ),
-        dbc.Col(
-            dcc.Graph(id="pie-chart", config=CONFIG,),
-            width=5, md=6
+            xs=6, md=8, lg=5,
         ),
         dbc.Col(
             dbc.Card(
@@ -136,9 +145,16 @@ def layout(df, transaction_category_array,
                     html.H3("Spending by Category"),
                     html.Span(html.Span(id="insights-card-text")),
                 ]),
-            ), width=4, md=12,
+            ),
+            xs=12, md=12, lg=4,
         ),
-    ], no_gutters=True, style=MARGIN_BELOW_CHARTS_ROW),
+    ], no_gutters=False, style=MARGIN_BELOW_CHARTS_ROW),
+
+    ])], className="a-card"),
+    dbc.Card([
+    dbc.CardBody([
+
+
     html.H1("Transactions"),
     dbc.Row([
         dbc.Col(
@@ -154,17 +170,19 @@ def layout(df, transaction_category_array,
                 ),
             ],
         ),
-    ], no_gutters=True),
+    ], no_gutters=False),
     dbc.Row([
         dbc.Col(
             dcc.Graph(
                 id="transactions-line-chart", config=CONFIG,
             ),
-            width=8, md=12,
+            width=8, md=12, lg=8
         ),
         dbc.Col(
             table,
-            width=4, md=12,
+            width=4, md=12, lg=4
         ),
-    ], no_gutters=True)
-])])])
+    ], no_gutters=False)
+])], className="a-card")
+
+])

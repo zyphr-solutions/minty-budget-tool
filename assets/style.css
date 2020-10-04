@@ -1,28 +1,51 @@
+body {
+    margin: 2rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/*h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}*/
+
 label {
     color: #001;
 }
 
 ._dash-loading {
-    width: 100%;
-    animation: spin 0.6s infinite linear;
-    width: 120px;
-    height: 120px;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    left: calc(50% - 120px);
+    top: calc(50% - 120px);
+    animation: spin 0.5s infinite linear;
     font-size: 0;
-    margin: 20px;
     border-radius: 50%;
-    border: 3px solid #fafafa;
-    border-left: 3px solid #56CC9D;
+    border: 10px solid #fafafa;
+    border-left: 10px solid #56CC9D;
+    border-left: 10px solid #56CC9D;
 }
 
 @keyframes spin {
-    from {transform: rotate(0deg);}
+    from {transform: rotate(0);}
       to {transform: rotate(360deg);}
 }
 
 /* CSS IDs */
-#column-with-budget-buttons > button {
+/*#column-with-budget-buttons > button {
     margin-left: 0.4rem;
-}
+}*/
 #navbar {
     border-radius: 4px;
     z-index: 100;
@@ -50,17 +73,6 @@ label {
 
 .login-title {
     font-size: 4rem;
-}
-
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translate(0, 20px);
-    }
-      to {
-        opacity: 1;
-        transform: translate(0, 0);
-      }
 }
 
 #login-form-div > h2 {
@@ -130,12 +142,64 @@ label {
     max-height: 400px;
 }
 
-/* row 3 */
-#transaction-table {
-    /* height: 60vh;
-    max-height: 300px; */
+@media all and (max-height: 768px) {
+    .table-div-container {
+        height: 40vh;
+        overflow-y: scroll;
+    }
 }
+@media all and (max-height: 769px) {
+    .table-div-container {
+        height: 40vh;
+        overflow-y: scroll;
+    }
+}
+
 #transactions-line-chart {
     height: 60vh;
     max-height: 300px;
+}
+
+.margin-right {
+    margin-right: 4px;
+}
+
+.a-card {
+    box-shadow: 10px 10px 8px #ccc;
+    margin-bottom: 5vh;
+    opacity: 0;
+    animation: fadeIn 0.6s 0.1s forwards;
+}
+
+#open-add-budget-modal {
+    width: 100%;
+}
+#open-remove-budget-modal {
+    width: 100%;
+}
+
+.title_style = {
+
+}
+
+.subtitle_style {
+    color: #aab;
+    font-weight: 10;
+    letter-spacing": 0.01rem;
+    font-size": 1.5rem;
+}
+
+.floatRightStyle {
+    float: right;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(0, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
 }
