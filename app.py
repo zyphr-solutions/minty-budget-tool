@@ -28,8 +28,7 @@ user_pwd, user_names = users_info()
 app = dash.Dash(
     __name__,
     external_stylesheets=[dbc.themes.MINTY],
-    suppress_callback_exceptions=True,
-    meta_tags=META_TAGS_LOGIN_PAGE
+    suppress_callback_exceptions=True
 )
 server = app.server
 
@@ -40,25 +39,17 @@ def route_login():
     password = data.get("password")
 
     if username not in user_pwd.keys() or  user_pwd[username] != password:
-        # print("route_login()\n  > no username")
         return flask.redirect("/login")
     else:
         rep = flask.redirect("/")
         rep.set_cookie("custom-auth-session", username)
-        
-        # print("route_login()\n  > login success!")
-        
-        # app.config["meta_tags"] = []
-        app.config["meta_tags"] = META_TAGS_APP_PAGE
-        
+    
         return rep
 
 @app.server.route("/logout", methods=["POST"])
 def route_logout():
     rep = flask.redirect("/login")
     rep.set_cookie("custom-auth-session", "", expires=0)
-    # print("route_logout()")
-    app.config["meta_tags"] = META_TAGS_LOGIN_PAGE
     return rep
 
 def string_date_to_date_object(dateString):
@@ -120,19 +111,54 @@ def sum_of_category_expense_between_dates(df_filter, category,
     sum_of_amounts = df_filter["Amount"].sum()
     return round(sum_of_amounts, 2)
 
+# login_form = html.Div([
+#     html.Form([
+#         dbc.Label("Username"),
+#         dbc.Input(placeholder="username", name="username",
+#                   type="text", id="username-input", value="bob"),
+#         dbc.Label("Password"),
+#         dbc.Input(placeholder="password", name="password",
+#                   type="password", id="password-input", value="bob@123"),
+#         html.Br(),
+#         html.Button("Login", className="btn btn-block btn-primary",
+#                     type="submit", id="submit-button"),
+#     ], action="/login", method="post")
+# ], id="login-form-div")
+
 login_form = html.Div([
-    html.Form([
-        dbc.Label("Username"),
-        dbc.Input(placeholder="username", name="username",
-                  type="text", id="username-input", value="bob"),
-        dbc.Label("Password"),
-        dbc.Input(placeholder="password", name="password",
-                  type="password", id="password-input", value="bob@123"),
-        html.Br(),
-        html.Button("Login", className="btn btn-block btn-primary",
-                    type="submit", id="submit-button"),
-    ], action="/login", method="post")
+    dbc.Row([
+        dbc.Col(
+            width=12,
+            children=[
+
+                html.Form([
+                    dbc.Label("Username"),
+                    dbc.Input(placeholder="username", name="username",
+                              type="text", id="username-input", value="bob"),
+                    dbc.Label("Password"),
+                    dbc.Input(placeholder="password", name="password",
+                              type="password", id="password-input", value="bob@123"),
+                    html.Br(),
+                    html.Button("Login", className="btn btn-block btn-primary",
+                                type="submit", id="submit-button"),
+                ], action="/login", method="post")
+            ]
+        ),
+    ]),
 ], id="login-form-div")
+
+#     html.Form([
+#         dbc.Label("Username"),
+#         dbc.Input(placeholder="username", name="username",
+#                   type="text", id="username-input", value="bob"),
+#         dbc.Label("Password"),
+#         dbc.Input(placeholder="password", name="password",
+#                   type="password", id="password-input", value="bob@123"),
+#         html.Br(),
+#         html.Button("Login", className="btn btn-block btn-primary",
+#                     type="submit", id="submit-button"),
+#     ], action="/login", method="post")
+# ], id="login-form-div")
 
 def load_budget_dataframe(session_cookie):
     df = pd.read_csv("data/" + session_cookie + "_budget.csv")

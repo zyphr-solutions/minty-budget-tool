@@ -1,8 +1,4 @@
-@media all and (max-width: 400px) {
-    body {
-        /*background-color: pink;*/
-    }
-
+/*@media all and (max-width: 400px) {
     #login-form-div, #credentials-alert {
         width: 100%;
     }
@@ -12,7 +8,7 @@
         width: 400px;
         background-color: blue;
     }
-}
+}*/
 
 body {
     margin: 2rem;
@@ -82,8 +78,8 @@ label {
 }
 #login-form-div, #credentials-alert {
     width: 100%;
-    max-width: 450px;
-    /*width: 400px;*/
+    /*max-width: 450px;*/
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
