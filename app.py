@@ -111,26 +111,33 @@ def sum_of_category_expense_between_dates(df_filter, category,
     sum_of_amounts = df_filter["Amount"].sum()
     return round(sum_of_amounts, 2)
 
-# login_form = html.Div([
-#     html.Form([
-#         dbc.Label("Username"),
-#         dbc.Input(placeholder="username", name="username",
-#                   type="text", id="username-input", value="bob"),
-#         dbc.Label("Password"),
-#         dbc.Input(placeholder="password", name="password",
-#                   type="password", id="password-input", value="bob@123"),
-#         html.Br(),
-#         html.Button("Login", className="btn btn-block btn-primary",
-#                     type="submit", id="submit-button"),
-#     ], action="/login", method="post")
-# ], id="login-form-div")
+# login_form = dbc.Form(
+#     [
+#         dbc.FormGroup(
+#             [
+#                 dbc.Label("Email", className="mr-2"),
+#                 dbc.Input(type="email", placeholder="Enter email"),
+#             ],
+#             className="mr-3",
+#         ),
+#         dbc.FormGroup(
+#             [
+#                 dbc.Label("Password", className="mr-2"),
+#                 dbc.Input(type="password", placeholder="Enter password"),
+#             ],
+#             className="mr-3",
+#         ),
+#         dbc.Button("Submit", color="primary"),
+#     ],
+#     inline=True,
+# )
+
 
 login_form = html.Div([
     dbc.Row([
         dbc.Col(
             width=12,
             children=[
-
                 html.Form([
                     dbc.Label("Username"),
                     dbc.Input(placeholder="username", name="username",

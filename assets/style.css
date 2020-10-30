@@ -1,25 +1,8 @@
-/*@media all and (max-width: 400px) {
-    #login-form-div, #credentials-alert {
-        width: 100%;
-    }
-}
-@media all and (min-width: 401px) and (max-width: 600px) {
-    #login-form-div, #credentials-alert {
-        width: 400px;
-        background-color: blue;
-    }
-}*/
-
 body {
     margin: 2rem;
     font-size: 20px;
     line-height: 1.5;
     font-weight: 400;
-
-    /*text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-    -moz-text-size-adjust: none;
-    -ms-text-size-adjust: none;*/
 }
 
 /*h1, h2, h3, h4, h5, h6 {
@@ -77,15 +60,17 @@ label {
     text-align: center;
 }
 #login-form-div, #credentials-alert {
-    width: 100%;
-    /*max-width: 450px;*/
+    /*max-width: 400px;*/
+    /*width: 100%;*/
     width: 400px;
+
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     animation: fadeIn 0.7s forwards 0.1s;
     opacity: 0;
     font-size: 1rem;
+    /*font-size: 2vh;*/
 }
 
 #top-nav {
@@ -182,7 +167,7 @@ label {
 }
 
 .a-card {
-    box-shadow: 10px 10px 8px #ccc;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
     margin-bottom: 5vh;
     opacity: 0;
     animation: fadeIn 0.6s 0.1s forwards;
@@ -220,3 +205,20 @@ label {
         transform: translate(0, 0);
     }
 }
+
+
+@media only screen and (max-width: 400px) {
+    #login-form-div {
+        width: 399px;
+        padding: 0;
+        margin: 0;
+    }
+    /*#credentials-alert {
+        width: 100%;
+    }*/
+}
+/*@media all and (min-width: 401px) and (max-width: 600px) {
+    #login-form-div, #credentials-alert {
+        width: 400px;
+    }
+}*/
