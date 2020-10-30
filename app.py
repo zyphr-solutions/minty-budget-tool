@@ -434,14 +434,14 @@ def serve_layout():
             dbc.Alert([
                 html.H5("Log in credentials", className="alert-heading"),
                 html.Span([
-                    html.Span("Username "),
+                    html.Span("Usr "),
                     html.B("bob", style=UNDERLINE_STYLE),
                     html.Span(", Pwd "),
                     html.B("bob@123 ", style=UNDERLINE_STYLE),
                 ]),
                 html.Br(),
                 html.Span([
-                    html.Span("Username "),
+                    html.Span("Usr "),
                     html.B("sally", style=UNDERLINE_STYLE),
                     html.Span(", Pwd "),
                     html.B("sally@123 ", style=UNDERLINE_STYLE),
