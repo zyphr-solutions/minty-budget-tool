@@ -28,7 +28,8 @@ user_pwd, user_names = users_info()
 app = dash.Dash(
     __name__,
     external_stylesheets=[dbc.themes.MINTY],
-    suppress_callback_exceptions=True
+    suppress_callback_exceptions=True,
+    meta_tags=META_TAGS_LOGIN_PAGE
 )
 server = app.server
 
@@ -39,16 +40,23 @@ def route_login():
     password = data.get("password")
 
     if username not in user_pwd.keys() or  user_pwd[username] != password:
+        # print("route_login()\n  > no username")
         return flask.redirect("/login")
     else:
         rep = flask.redirect("/")
         rep.set_cookie("custom-auth-session", username)
+        
+        # print("route_login()\n  > login success!")
+        app.config["meta_tags"] = []
+        
         return rep
 
 @app.server.route("/logout", methods=["POST"])
 def route_logout():
     rep = flask.redirect("/login")
     rep.set_cookie("custom-auth-session", "", expires=0)
+    # print("route_logout()")
+    app.config["meta_tags"] = META_TAGS_LOGIN_PAGE
     return rep
 
 def string_date_to_date_object(dateString):
@@ -427,15 +435,15 @@ def serve_layout():
                 html.H5("Log in credentials", className="alert-heading"),
                 html.Span([
                     html.Span("Username "),
-                    html.B("bob ", style=UNDERLINE_STYLE),
-                    html.Span("Password "),
+                    html.B("bob", style=UNDERLINE_STYLE),
+                    html.Span(", Pwd "),
                     html.B("bob@123 ", style=UNDERLINE_STYLE),
                 ]),
                 html.Br(),
                 html.Span([
                     html.Span("Username "),
-                    html.B("sally ", style=UNDERLINE_STYLE),
-                    html.Span("Password "),
+                    html.B("sally", style=UNDERLINE_STYLE),
+                    html.Span(", Pwd "),
                     html.B("sally@123 ", style=UNDERLINE_STYLE),
                 ]),
                 ],
