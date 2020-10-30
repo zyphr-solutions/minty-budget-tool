@@ -47,7 +47,9 @@ def route_login():
         rep.set_cookie("custom-auth-session", username)
         
         # print("route_login()\n  > login success!")
-        app.config["meta_tags"] = []
+        
+        # app.config["meta_tags"] = []
+        app.config["meta_tags"] = META_TAGS_APP_PAGE
         
         return rep
 
