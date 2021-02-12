@@ -5,7 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from datetime import date
 from datetime import datetime as dt
-from util.constants import *
+from constants import *
 
 
 def layout(df, transaction_category_array,

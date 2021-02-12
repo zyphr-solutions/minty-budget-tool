@@ -20,8 +20,8 @@ from datetime import datetime as dt
 from flask import request
 
 from layout import layout
-from util.users import users_info
-from util.constants import *
+from users import users_info
+from constants import *
 
 user_pwd, user_names = users_info()
 
